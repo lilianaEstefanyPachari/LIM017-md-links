@@ -1,6 +1,7 @@
 // import { unlinkSync } from 'fs';
 import path from 'path';
 import { existsSync, lstatSync, readdirSync, readFileSync  } from 'fs';
+import fetch from './lib.js';
 
 
 
@@ -47,8 +48,6 @@ export const isDirOrFile = (path) => {
 
 // funcion para ver si el archivo tiene extension .md ***********************************************************
 export const isFileMd = (filePath) => path.extname(filePath) === '.md' ? true : false;
-//console.log(isFileMd(txtPath));
-//console.log(isFileMd(pathFile));
 
 // funcion para ver el contenido de un directorio ***************************************************************
 export const readContentOfDir = (pathDir) => readdirSync(pathDir,'utf8');
@@ -78,11 +77,9 @@ export const readFileMd = (mdPath) => readFileSync(mdPath,'utf8') //return strin
 //console.log(readFileMd(pathAbsoluteFile));
 
 // funcion que recopila los links encontrados en cada archivo .md ************************************************
-const fullRegExp = /\[([^)@]+)?\]\(https?:([^()]*)\)/g;
-const textRegExp = /\[([^)@]+)?\]/g;
-const linkRegExp = /\(https?:([^()]*)\)/g;
-
-//[{ href, text, file }, ...]
+const fullRegExp = /\[([^)@]+)?\]\(https?:([^()]*)\)/gi;
+const textRegExp = /\[([^)@]+)?\]/gi;
+const linkRegExp = /\(https?:([^()]*)\)/gi;
 
 export const getLinksOfEachFile = (arrayFiles) => {
   let matchesLinksForFile = [];
@@ -92,13 +89,9 @@ export const getLinksOfEachFile = (arrayFiles) => {
     if(resultMatchLinkInFile !== null){
     //matchesLinksForFile.push({[md]:[...resultMatchLinkInFile]})
       for(let link of resultMatchLinkInFile){
-        // const objForEachLink = {};
-        // objForEachLink.href = link.match(linkRegExp).toString();
-        // objForEachLink.text = link.match(textRegExp).toString();
-        // objForEachLink.file = md;
         const objForEachLink = {
           href: link.match(linkRegExp).toString().slice(1,-1),
-          text: link.match(textRegExp).toString().slice(1,-1),
+          text: link.match(textRegExp).toString().slice(1,-1).slice(0,50),
           file: md
         };
       matchesLinksForFile.push(objForEachLink)
@@ -108,33 +101,32 @@ export const getLinksOfEachFile = (arrayFiles) => {
  return matchesLinksForFile //un array con objetos de todos los links
 };
 
-
-
-
-
-
-
-
-
-
-
-/*
-export const getLinksOfEachFile = (arrayFiles) => {
-  let matchesLinksForFile = [];
-  arrayFiles.forEach((md) => {
-    const resultReadFile = readFileMd(md);
-    const resultMatchLinkInFile = resultReadFile.match(fullRegExp);
-    if(resultMatchLinkInFile !== null){
-     matchesLinksForFile.push({[md]:[...resultMatchLinkInFile]})
-    }
-  })
-  return matchesLinksForFile //un array con objetos donde key es el archivo.md y el value un array con todos los links
+// funcion que hace validacion de status de los links encontrados ************************************************
+export const getValidateInfo = (arrayOfLinksToValidate) => {
+   const arrValidate = arrayOfLinksToValidate.map((obj) => {
+    return fetch(obj.href)
+      .then((response) => {
+        obj.status = response.status;
+        obj.ok = response.status === 200 ? 'Ok' : 'Fail';
+        return obj;}
+      )
+      .catch(error => console.log(`¡error de fetch! ${error.message}`))
+     })
+     
+  return Promise.all(arrValidate)
+  // .then(values => {console.log(values)});
 };
-*/
 
-// const arrayOfMdFiles = searchMdFilesInDir(pathAbsoluteDir);
-// console.log(getLinksOfEachFile(arrayOfMdFiles));
-
-//  console.log(matchesLink[0]);
-//  const myk =  Object.keys(matchesLinksForFile[0])[0]
-//  console.log(myk);
+// getValidateInfo([
+//     {
+//       href: 'https://github.com/workshopper/learnyounod',
+//       text: 'learnyounode',
+//       file: 'C:\\Users\\USUARIO\\Desktop\\proyectosLab\\LIM017-md-links\\directorio_prueba\\data.md'
+//     },
+//     {
+//       href: 'https://github.com/workshopper/how-to-npm',
+//       text: 'how-to-npm',
+//       file: 'C:\\Users\\USUARIO\\Desktop\\proyectosLab\\LIM017-md-links\\directorio_prueba\\data.md'
+//     }
+//   ])
+//  .then(values => {console.log(values)});
