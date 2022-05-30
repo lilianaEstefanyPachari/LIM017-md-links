@@ -130,3 +130,12 @@ export const getValidateInfo = (arrayOfLinksToValidate) => {
 //     }
 //   ])
 //  .then(values => {console.log(values)});
+
+
+//practica process argv
+//console.log(process.argv)
+//desestructuracion
+// const [ , , ...argumento] = process.argv;
+// console.log(argumento[0], argumento[1])
+// const [, saludo] = argumento.split('=')
+// console.log(saludo)
