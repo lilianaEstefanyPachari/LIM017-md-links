@@ -24,7 +24,6 @@ if(args.length === 1 && args[0] !== '--help') {
                console.log(error)
            })
 }
-
 if(args.length === 2 && args[1] === '--validate' ) {
     mdLinks(args[0],{ validate: true })
     .then((result) => {
@@ -58,7 +57,7 @@ if(args.length === 3 && args[1] === '--stats'&& args[2] === '--validate' ) {
     }) 
     .catch((error) => {
                console.log(error)
-           })
+    })
 }
 if(args.length > 1 && args[1] !== '--stats' && args[1] !== '--validate'){
     console.log(wrongOptions)

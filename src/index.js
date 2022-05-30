@@ -2,8 +2,6 @@ import { checkAndConvertPathToAbsolute, checkPathExist, isDirOrFile, isFileMd, s
 
 import chalk from 'chalk';
 import cowsay from 'cowsay';
-// console.log(chalk.blue('Hello world!'));
-
 // Rutas
 const pathAbsoluteDir = `C:/Users/USUARIO/Desktop/proyectosLab/LIM017-md-links/directorio_prueba`;
 const pathAbsoluteEmptyDir = `C:/Users/USUARIO/Desktop/proyectosLab/LIM017-md-links//directorio_prueba/dirVacio`;
