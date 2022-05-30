@@ -1,14 +1,18 @@
 {
-  "name": "md-links",
-  "version": "0.1.0",
+  "name": "md-links-lilipb",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "Liliana Pachari",
   "engines": {
     "node": ">=14.x"
   },
   "type": "module",
   "scripts": {
-    "dev": "nodemon index.js",
-    "start": "node index.js",
-    "test": "jest --coverage"
+    "dev": "nodemon src/index.js",
+    "start": "node src/index.js",
+    "pretest.out": "npm run eslint",
+    "test": "jest --verbose --coverage",
+    "eslint": "eslint --ext .js src/ test/"
   },
   "jest": {
     "transform": {
@@ -25,7 +29,9 @@
   },
   "dependencies": {
     "jest": "^28.1.0",
-    "markdown-it": "^13.0.1",
     "node-fetch": "^3.2.4"
-  }
+  },
+  "bin": {
+    "md-links": "src/cli.js"
+  } 
 }
