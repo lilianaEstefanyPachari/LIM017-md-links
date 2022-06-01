@@ -1,2 +1,2 @@
 import fetch from 'node-fetch';
-export default fetch 
+export default fetch; 
