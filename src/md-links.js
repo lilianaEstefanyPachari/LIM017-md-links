@@ -88,7 +88,6 @@ export const getValidateInfo = (arrayOfLinksToValidate) => {
   const arrValidate = arrayOfLinksToValidate.map((obj) => {
     return fetch(obj.href)
       .then((response) => {
-        console.log('sdfeervreveevervrevrvvvvvvvvvvvvvvvvvv',response);
         obj.status = response.status;
         obj.ok = response.status === 200 ? 'Ok' : 'Fail';
         return obj;}

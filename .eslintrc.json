@@ -1,6 +1,6 @@
 {
     "env": {
-        "browser": true,
+        "node": true,
         "es2021": true
     },
     "extends": "eslint:recommended",
@@ -17,5 +17,16 @@
         "quotes": ["error", "single", { "allowTemplateLiterals": true }],
         "indent": ["error", 2],
         "semi": ["error", "always"]
-    }
+    },
+    "overrides": [
+        {
+          "files": [
+              "./test/src/md-links.spec.js",
+              "./src/__mocks__/lib.js"
+          ],
+          "env": {
+            "jest": true
+          }
+        }
+      ]
 }

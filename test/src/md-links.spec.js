@@ -1,10 +1,12 @@
-import { checkPathExist, checkAndConvertPathToAbsolute, isDirOrFile, isFileMd, readContentOfDir, searchMdFilesInDir, readFileMd } from '../../src/md-links';
+import { checkPathExist, checkAndConvertPathToAbsolute, isDirOrFile, isFileMd, readContentOfDir, searchMdFilesInDir, readFileMd, getLinksOfEachFile, getValidateInfo } from '../../src/md-links';
 
 const testRelativeDir = './directorio_prueba';
 const testAbsoluteDir = `C:/Users/USUARIO/Desktop/proyectosLab/LIM017-md-links/directorio_prueba`;
-const testAbsoluteFile = `C:/Users/USUARIO/Desktop/proyectosLab/LIM017-md-links/directorio_prueba/data.md`;
+const testAbsoluteFile = `C:/Users/USUARIO/Desktop/proyectosLab/LIM017-md-links/directorio_prueba/test.md`;
 const txtPath = './directorio_prueba/archivo1.txt';
 const fakePath = '/etc/passwd';
+const arrayTest = [{file: 'C:\\Users\\USUARIO\\Desktop\\proyectosLab\\LIM017-md-links\\directorio_prueba\\Sub_directorio\\tercer_directorio\\data3.md', href: 
+'https://opensource.microsoft.com/codeofconduct/faq/', text: 'Microsoft Code of Conduct FAQ Microsoft Code of Co'}];
 
 describe('checkPathExist testing', () => {
   it('verifica si el path existe',() => {
@@ -35,7 +37,7 @@ describe('isFileMd testing', () => {
 
 describe('readContentOfDir testing', () => {
   it('lee el contenido de un directorio',() => {
-    const contentOfDir = ['archivo1.txt', 'data.md', 'dirVacio', 'MDarchivo.md', 'Sub_directorio'];
+    const contentOfDir = ['archivo1.txt', 'data.md', 'dirVacio', 'MDarchivo.md', 'Sub_directorio', 'test.md'];
     expect(readContentOfDir(testAbsoluteDir)).toEqual(contentOfDir);
   });
 } );
@@ -43,23 +45,40 @@ describe('readContentOfDir testing', () => {
 describe('searchMdFilesInDir testing', () => {
   it('recopila los archivos .md en un directorio',() => {
     const mdFiles = [
-      'C:\\Users\\USUARIO\\Desktop\\proyectosLab\\LIM017-md-links\\directorio_prueba\\data.md', 
-      'C:\\Users\\USUARIO\\Desktop\\proyectosLab\\LIM017-md-links\\directorio_prueba\\MDarchivo.md', 
-      'C:\\Users\\USUARIO\\Desktop\\proyectosLab\\LIM017-md-links\\directorio_prueba\\Sub_directorio\\data2.md', 
-      'C:\\Users\\USUARIO\\Desktop\\proyectosLab\\LIM017-md-links\\directorio_prueba\\Sub_directorio\\tercer_directorio\\data3.md'
+      `C:\\Users\\USUARIO\\Desktop\\proyectosLab\\LIM017-md-links\\directorio_prueba\\data.md`,
+      `C:\\Users\\USUARIO\\Desktop\\proyectosLab\\LIM017-md-links\\directorio_prueba\\MDarchivo.md`,
+      `C:\\Users\\USUARIO\\Desktop\\proyectosLab\\LIM017-md-links\\directorio_prueba\\Sub_directorio\\data2.md`,
+      `C:\\Users\\USUARIO\\Desktop\\proyectosLab\\LIM017-md-links\\directorio_prueba\\Sub_directorio\\tercer_directorio\\data3.md`,
+      `C:\\Users\\USUARIO\\Desktop\\proyectosLab\\LIM017-md-links\\directorio_prueba\\test.md`,
     ];
     expect(searchMdFilesInDir(testAbsoluteDir)).toEqual(mdFiles);
   });
+});
+
+describe('readFileMd testing', () => {
+  it('lee el contenido de un archivo',() => {
+    const contentOfDir = `hola! soy un md`;
+    expect(readFileMd(testAbsoluteFile)).toEqual(contentOfDir);
+  });
 } );
 
-// describe('readFileMd testing', () => {
-//     fit('lee el contenido de un archivo',() => {
-//         const contentOfDir = `hola liliana soy el archivo data.md
-// ### Tutoriales / NodeSchool workshoppers
-// * [learnyounode](https://github.com/workshopper/learnyounode)
-// * [how-to-npm](https://github.com/workshopper/how-to-npm)
-// * [promise-it-wont-hurt](https://github.com/stevekane/promise-it-wont-hurt)`;
-//         expect(readFileMd(testAbsoluteFile)).toEqual(contentOfDir)
-//     })
-// } );
-
+describe('getLinksOfEachFile testing', () => {
+  it('recopila los links encontrados',() => {
+    const mdFiles = [
+      `C:\\Users\\USUARIO\\Desktop\\proyectosLab\\LIM017-md-links\\directorio_prueba\\Sub_directorio\\tercer_directorio\\data3.md`,
+      `C:\\Users\\USUARIO\\Desktop\\proyectosLab\\LIM017-md-links\\directorio_prueba\\MDarchivo.md`,
+      `C:\\Users\\USUARIO\\Desktop\\proyectosLab\\LIM017-md-links\\directorio_prueba\\test.md`,
+    ];
+    expect(getLinksOfEachFile(mdFiles)).toEqual(arrayTest);
+    expect(getLinksOfEachFile([`C:\\Users\\USUARIO\\Desktop\\proyectosLab\\LIM017-md-links\\directorio_prueba\\MDarchivo.md`])).toEqual([]);
+  });
+} );
+describe('getValidateInfo testing', () => {
+  fit('hace validación de status de los links encontrados',(done) => {
+    getValidateInfo(arrayTest).then((res) => {
+      expect(res).toEqual([{file: 'C:\\Users\\USUARIO\\Desktop\\proyectosLab\\LIM017-md-links\\directorio_prueba\\Sub_directorio\\tercer_directorio\\data3.md', href: 
+      'https://opensource.microsoft.com/codeofconduct/faq/', ok: 'Ok', status: 200, text: 'Microsoft Code of Conduct FAQ Microsoft Code of Co'}]);
+      done();
+    });
+  });
+});
