@@ -1,1 +1,2 @@
-//export const fetch = jest.fn(() => Promise.resolve({a:2})); 
+const fetch = jest.fn(() => Promise.resolve({status: 200, ok: 'Ok'})); 
+export default fetch;

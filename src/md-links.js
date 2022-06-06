@@ -3,6 +3,7 @@ import { existsSync, lstatSync, readdirSync, readFileSync  } from 'fs';
 import fetch from './lib.js';
 
 //rutas de prueba
+/*
 const pathAbsoluteDir = `C:/Users/USUARIO/Desktop/proyectosLab/LIM017-md-links/directorio_prueba`;
 const pathAbsoluteFile = `C:/Users/USUARIO/Desktop/proyectosLab/LIM017-md-links/directorio_prueba/data.md`;
 const pathRelativeDir = './directorio_prueba';
@@ -10,7 +11,7 @@ const pathFile = './directorio_prueba/data.md';
 const fakePath = '/etc/passwd';
 const pathAbsoluteFileTxt = `C:/Users/USUARIO/Desktop/proyectosLab/LIM017-md-links/directorio_prueba/archivo1.txt`;
 const txtPath = './directorio_prueba/archivo1.txt';
-
+*/
 //funcion que verifica si el path existe *****************************************************************
 export const checkPathExist = (pathAbsolute) => existsSync(pathAbsolute) ? 'La ruta existe.' : 'La ruta no existe.';
 //console.log(checkPathExist(fakePath));
@@ -96,28 +97,5 @@ export const getValidateInfo = (arrayOfLinksToValidate) => {
   });
      
   return Promise.all(arrValidate);
-  // .then(values => {console.log(values)});
 };
 
-// getValidateInfo([
-//   {
-//     href: 'https://github.com/workshopper/learnyounod',
-//     text: 'learnyounode',
-//     file: 'C:\\Users\\USUARIO\\Desktop\\proyectosLab\\LIM017-md-links\\directorio_prueba\\data.md'
-//   },
-//   {
-//     href: 'https://github.com/workshopper/how-to-npm',
-//     text: 'how-to-npm',
-//     file: 'C:\\Users\\USUARIO\\Desktop\\proyectosLab\\LIM017-md-links\\directorio_prueba\\data.md'
-//   }
-// ])
-//   .then(values => {console.log(values)});
-
-
-//practica process argv
-//console.log(process.argv)
-//desestructuracion
-// const [ , , ...argumento] = process.argv;
-// console.log(argumento[0], argumento[1])
-// const [, saludo] = argumento.split('=')
-// console.log(saludo)
