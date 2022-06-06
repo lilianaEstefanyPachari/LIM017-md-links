@@ -11,7 +11,7 @@ const help = `\nIngrese la ruta a analizar con el comando ${chalk.cyanBright.bol
 const wrongOptions = `\nNo ingreso un comando valido, para ver la lista de comandos disponibles ingrese: ${chalk.red.bold('md-links --help')}`;
 
 if(args.length === 0) {
-  console.log(noPath);
+  console.log(`\n¯\\_(ツ)_/¯\n${noPath}`);
 }
 if(args.length === 1 && args[0] === '--help') {
   console.log(help);
@@ -46,7 +46,11 @@ if(args.length === 2 && args[1] === '--validate' ) {
 if(args.length === 2 && args[1] === '--stats' ) {
   mdLinks(args[0],{ validate: true })
     .then((result) => {
-      const stats = `\nTotal: ${chalk.green.bold(result.length)} \nUnique: ${chalk.green.bold()}`;
+      // let count;
+      // result.forEach((e) => {
+      //   if(e.href)
+      // })
+      const stats = `\nTotal: ${chalk.green.bold(result.length)} \nUnique: ${chalk.green.bold(result.length)}`;
       // const stats = `\nTotal: ${chalk.green.bold(result.length)} \nUnique: ${chalk.green.bold(result.length)}`;
 
       console.log(stats);
@@ -72,6 +76,6 @@ if(args.length === 3 && args[1] === '--stats'&& args[2] === '--validate' ) {
     });
 }
 if(args.length > 1 && args[1] !== '--stats' && args[1] !== '--validate'){
-  console.log(wrongOptions);
+  console.log(`\n¯\\_(ツ)_/¯\n${wrongOptions}`);
 }
 

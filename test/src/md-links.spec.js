@@ -1,12 +1,15 @@
+/* eslint-disable indent */
 import { checkPathExist, checkAndConvertPathToAbsolute, isDirOrFile, isFileMd, readContentOfDir, searchMdFilesInDir, readFileMd, getLinksOfEachFile, getValidateInfo } from '../../src/md-links';
+jest.mock('../../src/lib.js');
 
 const testRelativeDir = './directorio_prueba';
 const testAbsoluteDir = `C:/Users/USUARIO/Desktop/proyectosLab/LIM017-md-links/directorio_prueba`;
 const testAbsoluteFile = `C:/Users/USUARIO/Desktop/proyectosLab/LIM017-md-links/directorio_prueba/test.md`;
 const txtPath = './directorio_prueba/archivo1.txt';
 const fakePath = '/etc/passwd';
-const arrayTest = [{file: 'C:\\Users\\USUARIO\\Desktop\\proyectosLab\\LIM017-md-links\\directorio_prueba\\Sub_directorio\\tercer_directorio\\data3.md', href: 
-'https://opensource.microsoft.com/codeofconduct/faq/', text: 'Microsoft Code of Conduct FAQ Microsoft Code of Co'}];
+const arrayTest = [{file: 'C:\\Users\\USUARIO\\Desktop\\proyectosLab\\LIM017-md-links\\directorio_prueba\\Sub_directorio\\tercer_directorio\\data3.md', 
+                    href: 'https://opensource.microsoft.com/codeofconduct/faq/', 
+                    text: 'Microsoft Code of Conduct FAQ Microsoft Code of Co'}];
 
 describe('checkPathExist testing', () => {
   it('verifica si el path existe',() => {
@@ -74,10 +77,17 @@ describe('getLinksOfEachFile testing', () => {
   });
 } );
 describe('getValidateInfo testing', () => {
-  fit('hace validación de status de los links encontrados',(done) => {
-    getValidateInfo(arrayTest).then((res) => {
-      expect(res).toEqual([{file: 'C:\\Users\\USUARIO\\Desktop\\proyectosLab\\LIM017-md-links\\directorio_prueba\\Sub_directorio\\tercer_directorio\\data3.md', href: 
-      'https://opensource.microsoft.com/codeofconduct/faq/', ok: 'Ok', status: 200, text: 'Microsoft Code of Conduct FAQ Microsoft Code of Co'}]);
+  it('hace validación de status de los links encontrados',(done) => {
+    getValidateInfo(arrayTest)
+     .then((res) => {
+      expect(res).toEqual([
+        {file:'C:\\Users\\USUARIO\\Desktop\\proyectosLab\\LIM017-md-links\\directorio_prueba\\Sub_directorio\\tercer_directorio\\data3.md',
+        href:'https://opensource.microsoft.com/codeofconduct/faq/',
+        text: 'Microsoft Code of Conduct FAQ Microsoft Code of Co',
+        ok: 'Ok',
+        status: 200
+        }]
+        );
       done();
     });
   });

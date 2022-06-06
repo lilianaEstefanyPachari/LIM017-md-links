@@ -1,5 +1,5 @@
 hola lil soy el archivo data.md 
 ### Tutoriales / NodeSchool workshoppers
-* [learnyounode](https://github.com/workshopper/learnyounod)
+* [learnyounode](https://github.com/workshopper/learnyounode)
 * [how-to-npm](https://github.com/workshopper/how-to-npm)
 * [promise-it-wont-hurt](https://github.com/stevekane/promise-it-wont-hurt)
