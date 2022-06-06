@@ -22,7 +22,8 @@
         {
           "files": [
               "./test/src/md-links.spec.js",
-              "./src/__mocks__/lib.js"
+              "./src/__mocks__/lib.js",
+              "./test/src/index.spec.js"
           ],
           "env": {
             "jest": true
