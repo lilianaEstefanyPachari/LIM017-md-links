@@ -1,4 +1,17 @@
 # Markdown Links
+librería que permite analizar links que se encuentran en archivos de formato Markdown,  dando información del estado de estos links, tales como la cantidad total de links, links únicos existentes, y si funcionan correctamente o son enlaces rotos.
+## 📌 Instrucciones
+
+## 📌Diagrama de flujo
+![flowchart mdlinks](https://user-images.githubusercontent.com/98620685/172260686-07b45989-61fc-4696-9e4a-9c6944228088.png)
+##📌 Construido con:
+Node.js
+NPM
+node-fetch (Hacer llamadas HTTP)
+
+
+
+# Markdown Links
 
 ## Índice
 

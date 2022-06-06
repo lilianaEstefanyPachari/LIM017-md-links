@@ -46,13 +46,11 @@ if(args.length === 2 && args[1] === '--validate' ) {
 if(args.length === 2 && args[1] === '--stats' ) {
   mdLinks(args[0],{ validate: true })
     .then((result) => {
-      // let count;
-      // result.forEach((e) => {
-      //   if(e.href)
-      // })
-      const stats = `\nTotal: ${chalk.green.bold(result.length)} \nUnique: ${chalk.green.bold(result.length)}`;
-      // const stats = `\nTotal: ${chalk.green.bold(result.length)} \nUnique: ${chalk.green.bold(result.length)}`;
+      const jsonObject = result.map(JSON.stringify);
+      const uniqueSet = new Set(jsonObject);
+      const uniqueArray = Array.from(uniqueSet).map(JSON.parse);
 
+      const stats = `\nTotal: ${chalk.green.bold(result.length)} \nUnique: ${chalk.green.bold(uniqueArray.length)}`;
       console.log(stats);
     }) 
     .catch((error) => {
@@ -68,8 +66,12 @@ if(args.length === 3 && args[1] === '--stats'&& args[2] === '--validate' ) {
           linkBroken += 1;
         }
       }); 
-      const statsAndValidate = `\nTotal: ${chalk.green.bold(result.length)} \nUnique: ${chalk.green.bold(result.length)} \nBroken: ${chalk.redBright.bold(linkBroken)}`;
-      console.log(statsAndValidate);                    
+      const jsonObject = result.map(JSON.stringify);
+      const uniqueSet = new Set(jsonObject);
+      const uniqueArray = Array.from(uniqueSet).map(JSON.parse);
+
+      const statsAndValidate = `\nTotal: ${chalk.green.bold(result.length)} \nUnique: ${chalk.green.bold(uniqueArray.length)} \nBroken: ${chalk.redBright.bold(linkBroken)}`;
+      console.log(statsAndValidate);     
     }) 
     .catch((error) => {
       console.log(error);
@@ -77,5 +79,6 @@ if(args.length === 3 && args[1] === '--stats'&& args[2] === '--validate' ) {
 }
 if(args.length > 1 && args[1] !== '--stats' && args[1] !== '--validate'){
   console.log(`\n¯\\_(ツ)_/¯\n${wrongOptions}`);
+} else if(args.length === 3 && args[2] !== '--validate' ){
+  console.log(`\n¯\\_(ツ)_/¯\n${wrongOptions}`);
 }
-
