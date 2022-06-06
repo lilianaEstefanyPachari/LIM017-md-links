@@ -1,8 +1,12 @@
 {
   "name": "md-links-lilipb",
+  "description": "Herramienta de línea de comando para analizar links de archivos markdown",
   "version": "1.0.0",
+  "keywords": ["markdown", "links","validacion de links"],
   "main": "index.js",
   "author": "Liliana Pachari",
+  "license": "ISC",
+  "repository": "https://github.com/lilianaEstefanyPachari/LIM017-md-links",
   "engines": {
     "node": ">=14.x"
   },
