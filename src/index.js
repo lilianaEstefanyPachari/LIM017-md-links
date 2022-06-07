@@ -21,6 +21,9 @@ const mdLinks = (path,option) => {
         if(isFileMd(absolutePath)){
           fileArray.push(absolutePath);
         }
+        // else{
+        //   reject('\n¯\\_(ツ)_/¯ \nNo es un archivo Markdow');
+        // }
       }
       if(isDirOrFile(absolutePath) === 'es un directorio'){
         const foundFiles = searchMdFilesInDir(absolutePath);
@@ -28,7 +31,7 @@ const mdLinks = (path,option) => {
       }
       const linksOfEachFile = getLinksOfEachFile(fileArray.flat());
       if(linksOfEachFile.length === 0){
-        resolve('No es un archivo Markdow o no se encontraron links');
+        reject('No es un archivo Markdow o no se encontraron links');
       }
       if(option && option.validate === true) {
         resolve(getValidateInfo(linksOfEachFile));

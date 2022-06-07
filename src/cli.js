@@ -26,8 +26,7 @@ if(args.length === 1 && args[0] !== '--help') {
     .then((result) => {
       result.forEach((e) => {
         console.log(`\nhref: ${chalk.cyanBright.bold(e.href)} \ntext: ${chalk.cyanBright.bold(e.text)} \nfile: ${chalk.cyanBright.bold(e.file)}`); 
-        
-      }); 
+      });  
     }) 
     .catch((error) => {
       console.log(error);
