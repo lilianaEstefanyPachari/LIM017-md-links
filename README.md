@@ -1,11 +1,11 @@
 # Markdown Links
 librería que permite analizar links que se encuentran en archivos de formato Markdown,  dando información del estado de estos links, tales como la cantidad total de links, links únicos existentes, y si funcionan correctamente o son enlaces rotos.
 ## 📌 Instrucciones
-###Instalación
+### Instalación
 ```sh
 $ npm i md-links-lilipb
 ```
-###Guia de uso
+### Guia de uso
 La aplicación se ejecuta de la siguiente
 manera a través de la **terminal**:
 
@@ -17,9 +17,13 @@ La ruta ingresada puede ser relativa o absoluta y  las opciones son las siguient
 ##### Detalle:
 `md-links <path-to-file>` : analiza el archivo Markdown e imprime los links que vaya encontrando, junto con la ruta del archivo donde aparece y el texto
 que hay dentro del link, esta opción no valida si las URLs responden ok o no.
+
 `--validate` : se hace una petición HTTP para averiguar si el link funciona o no y retorna la información.
+
 `--stats`:  retorna un texto con el número total(Total) de links encontrados y el número de links únicos(Unique).
+
 `--stats --validate`: retorna un texto con el número total(Total) de links encontrados, el número de links únicos(Unique) y el número de links rotos(Broken).
+
 `--help`: retorna la lista de opciones validas.
 
 ## 📌Diagrama de flujo
