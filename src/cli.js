@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-/*global process*/
+
 /*eslint no-undef: "error"*/
 import chalk from 'chalk';
 // Grab provided args.
