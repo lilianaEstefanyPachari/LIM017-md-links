@@ -7,7 +7,12 @@ const[,, ...args] = process.argv;
 
 import mdLinks from './index.js';
 const noPath = `\nNo ingreso ninguna ruta, para ver la lista de comandos disponibles ingrese: ${chalk.red.bold('md-links --help')}`;
-const help = `\nIngrese la ruta a analizar con el comando ${chalk.cyanBright.bold('md-links <path-to-file>')}  \nTambién puede ingresar las opciones de: ${chalk.cyanBright.bold('--stats')}, ${chalk.cyanBright.bold('--validate')}, o ambas.`;
+const help = `\n${chalk.cyanBright.bold('md-links <path-to-file>')}: analiza el archivo Markdown e imprime los links que vaya encontrando, junto con la ruta del archivo donde aparece y el texto que hay 
+dentro del link, esta opción no valida si las URLs responden ok o no. Adicionalmente puede añadir las siguientes opciones:
+\n${chalk.cyanBright.bold('--validate')}: se hace una petición HTTP para averiguar si el link funciona o no y retorna la información.
+\n${chalk.cyanBright.bold('--stats')}:  retorna un texto con el número total(Total) de links encontrados y el número de links únicos(Unique).
+\n${chalk.cyanBright.bold('--stats --validate')}: retorna un texto con el número total(Total) de links encontrados, el número de links únicos(Unique) y el número de links rotos(Broken).`;
+
 const wrongOptions = `\nNo ingreso un comando valido, para ver la lista de comandos disponibles ingrese: ${chalk.red.bold('md-links --help')}`;
 
 if(args.length === 0) {

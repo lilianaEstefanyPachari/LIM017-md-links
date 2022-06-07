@@ -28,10 +28,15 @@ que hay dentro del link, esta opción no valida si las URLs responden ok o no.
 
 ## 📌Diagrama de flujo
 ![flowchart mdlinks](https://user-images.githubusercontent.com/98620685/172260686-07b45989-61fc-4696-9e4a-9c6944228088.png)
-##📌 Construido con:
+## 📌Construido con:
+
 Node.js
+
 NPM
+
 node-fetch (Hacer llamadas HTTP)
+
+Chalk
 
 
 
