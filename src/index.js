@@ -1,6 +1,6 @@
 import { checkAndConvertPathToAbsolute, checkPathExist, isDirOrFile, isFileMd, searchMdFilesInDir, getLinksOfEachFile, getValidateInfo} from './md-links.js';
 
-import chalk from 'chalk';
+// import chalk from 'chalk';
 // Rutas
 /*
 const pathAbsoluteDir = `C:/Users/USUARIO/Desktop/proyectosLab/LIM017-md-links/directorio_prueba`;
@@ -11,6 +11,7 @@ const fakePath = '/etc/passwd';
 const pathFile = '../directorio_prueba/data.md';
 const pathAbsoluteFileTxt = `C:/Users/USUARIO/Desktop/proyectosLab/LIM017-md-links/directorio_prueba/archivo1.txt`;
 */
+
 const mdLinks = (path,option) => {
   return new Promise((resolve,reject) => {
     if(checkPathExist(path) === 'La ruta existe.') {
@@ -42,7 +43,7 @@ const mdLinks = (path,option) => {
 
     }
     else {
-      reject(`\n¯\\_(ツ)_/¯ \nNo ingreso una ruta valida, para ver la lista de comandos disponibles ingrese ${chalk.red.bold('md-links --help')}`);
+      reject(`\n¯\\_(ツ)_/¯ \nNo ingreso una ruta valida, para ver la lista de comandos disponibles ingrese 'md-links --help'`);
     }       
   });
 };

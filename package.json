@@ -18,7 +18,7 @@
   "scripts": {
     "dev": "nodemon src/index.js",
     "start": "node src/index.js",
-    "pretest.out": "npm run eslint",
+    "pretest": "npm run eslint",
     "test": "jest --verbose --coverage",
     "eslint": "eslint --ext .js src/ test/"
   },

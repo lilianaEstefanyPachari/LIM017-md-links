@@ -74,11 +74,12 @@ describe('mdLinks testing', () => {
         );
       });
     mdLinks(pathAbsoluteFileTxt)
-      .then((res) => {
+      .catch((res) => {
         expect(res).toStrictEqual('No es un archivo Markdow o no se encontraron links');
       });
-
-
-
+    mdLinks('rutafalsa/ruta')
+      .catch((res) => {
+        expect(res).toStrictEqual(`\n¯\\_(ツ)_/¯ \nNo ingreso una ruta valida, para ver la lista de comandos disponibles ingrese 'md-links --help'`);
+      });
   });
 } );
